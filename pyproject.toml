@@ -1,0 +1,26 @@
+[project]
+name = "agentconf"
+version = "0.1.0"
+description = "Ten-day study plan for AGNTCon + MCPCon Europe 2026"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.60",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+# Added as the plan reaches the days that need them, not before.
+mcp = ["mcp[cli]>=1.9", "openai-agents>=0.0.14"]
+observability = [
+    "opentelemetry-sdk>=1.27",
+    "opentelemetry-exporter-otlp>=1.27",
+]
+graph = ["langgraph>=0.2", "langchain-openai>=0.2"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
