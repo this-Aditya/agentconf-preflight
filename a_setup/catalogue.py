@@ -1,8 +1,8 @@
 """
-catalogue.py — Day 00, step 3. Which models does this provider actually offer?
+catalogue.py — Which models does this provider actually offer?
 
 The plan says: "note which model names your provider actually offers — the
-catalogue changes, and picking one now saves confusion on Day 01."
+catalogue changes, and picking one now saves confusion later."
 
 Every provider here exposes the OpenAI /models endpoint, so one call covers all
 of them. GitHub Models also has a richer catalogue at /catalog/models, which

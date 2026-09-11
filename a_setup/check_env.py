@@ -1,5 +1,5 @@
 """
-check_env.py — Day 00, step 1. Answers one question: what will actually run?
+check_env.py — Answers one question: what will actually run?
 
 Prints every provider, whether its credentials are present, and which one
 shared/llm.py has chosen. Makes no network call, so it is safe to run first.

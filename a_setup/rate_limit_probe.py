@@ -1,10 +1,10 @@
 """
-rate_limit_probe.py — Day 00, step 4. Hit the rate limit on purpose.
+rate_limit_probe.py — Hit the rate limit on purpose.
 
 Why: an agent loop spends one request per turn. On GitHub Models' free tier
 (~10 requests/minute) a five-turn debug session is half your minute, and the 429
 that follows looks exactly like a bug if you have never seen it before. See it
-once now, in a script that expects it, and you will recognise it on Day 01.
+once now, in a script that expects it, and you will recognise it in a loop later.
 
 This deliberately does NOT use shared.llm.ask(), because ask() retries through
 rate limits — which is what you want in a lesson and precisely what you do not

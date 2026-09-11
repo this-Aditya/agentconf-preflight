@@ -1,61 +1,62 @@
-# agentconf
+# agentconf-preflight
 
-Working repo for the **Ten Days to AGNTCon** study plan — AGNTCon + MCPCon Europe,
-17–18 September 2026, Amsterdam.
+Pre-conference groundwork for **LFX AGNTCon + MCPCon Europe 2026** (17–18 September,
+Amsterdam): agent loops and harness engineering, stateless MCP servers and extensions,
+agent identity via OAuth 2.1 and token exchange, A2A multi-agent orchestration, and
+OpenTelemetry-backed evals.
 
-The plan itself:
-<https://claude.ai/code/artifact/df474e66-0fa7-478a-b878-0d0d9cecbe57>
+Modules in dependency order — nothing is explained with a word an earlier module
+hasn't introduced.
 
-## Shape of this repo
+## Modules
 
-One uv project, one virtualenv, one interpreter for PyCharm to point at. Each day
-of the plan is a folder added **when you reach it**, not all up front:
+| Folder | Subject |
+|--------|---------|
+| `setup/` | Provider client, model catalogue, rate limits ✅ |
+| `agent_loop/` | The agent loop, written by hand |
+| `mcp_foundations/` | MCP: hosts, clients, servers |
+| `mcp_server/` | The spec, then your own server |
+| `stateless_mcp/` | Unlearning the `initialize` handshake |
+| `mcp_extensions/` | Tasks, multi-round-trip requests, Apps |
+| `harness_and_skills/` | Harnesses, Skills, context engineering |
+| `agent_identity/` | OAuth 2.1, PKCE, token exchange, audience |
+| `multi_agent/` | A2A and orchestration patterns |
+| `observability_evals/` | OpenTelemetry GenAI traces, golden sets |
+| `security_platform/` | Prompt injection, gateways, control planes |
+
+Folders are created as each module is reached, not up front.
+
+## Layout
 
 ```
-agentconf/
-├── pyproject.toml          # single project; per-day deps are optional groups
-├── .env                    # gitignored; your keys
-├── shared/llm.py           # the provider switch — every day imports from here
-└── day00_setup/            # <- you are here
+shared/llm.py     the only file that names a provider
+setup/            one folder per module
+pyproject.toml    one uv project — one interpreter for PyCharm
 ```
 
-## Providers
+Every provider here speaks the OpenAI API shape, so switching is `base_url` +
+`api_key` + model name and nothing else. Modules import
+`from shared.llm import build_client, ask, MODEL, PROVIDER` and never learn which
+provider they are on — which matters, because MCP splits the same way: a server has
+no idea which model is on the other end.
 
-`shared/llm.py` builds an OpenAI-SDK client for whichever provider you have, because
-they all speak the OpenAI API shape. Switching is `base_url` + `api_key` + model name;
-no lesson code changes. Auto-picked in this order, or forced with `LLM_PROVIDER`:
+| Provider | State |
+|---|---|
+| `arc` — KCL ARC-AI | **primary.** Tool calling confirmed on lite/nano/apex. Needs the VPN |
+| `github` — GitHub Models | fallback; currently `410`, mid-retirement |
+| `gemini` — AI Studio key | fallback; needs a funded AI Studio prepay balance |
+| `vertex` — Gemini on Vertex AI | fallback; OAuth token, spends Google Cloud credits |
+| `radar` — KCL RADAR | not auto-picked; reachable with `LLM_PROVIDER=radar` |
 
-`gemini` → `vertex` → `radar` → `arc` → `github`
-
-Keys go in `.env` (copy `.env.example`); the variable names match
-`../agent-sandbox/4.tool-calling/.env` so they paste straight across.
-
-## Running anything
+## Running it
 
 ```bash
-uv sync                                          # first time only
-uv run python day00_setup/check_env.py           # what will actually run
-uv run python day00_setup/hello.py               # one completion
+cp .env.example .env                              # then add your keys
+uv sync
+uv run python setup/check_env.py            # what will actually run
+uv run python setup/hello.py                # one completion
 ```
 
-In PyCharm: open this folder, then set the interpreter to `.venv/bin/python`
-(Settings → Project → Python Interpreter → Add → Existing → `.venv/bin/python`).
-Mark the project root as a source root so `from shared.llm import ...` resolves.
-
-## Days
-
-| Day | Folder | Hours | Subject |
-|-----|--------|-------|---------|
-| 00 | `day00_setup/` | 45 min | Setup on your own stack |
-| 01 | — | 4 h 30 | Build one agent, by hand |
-| 02 | — | 4 h 30 | The MCP course, at its real speed |
-| 03 | — | 5 h | Read the spec, then build a server |
-| 04 | — | 4 h 40 | Unlearn the handshake (stateless MCP) |
-| 05 | — | 4 h | The parts of MCP the talks are about |
-| 06 | — | 4 h 30 | Harnesses, Skills, memory and context |
-| 07 | — | 4 h 40 | Identity — the hardest day |
-| 08 | — | 3 h 30 | More than one agent (A2A) |
-| 09 | — | 5 h | Proving it works (traces, evals) |
-| 10 | — | 4 h 10 | Security, platform, and your schedule |
-
-45¼ hours total. Folders get created one day at a time.
+PyCharm: open this folder, set the interpreter to `.venv/bin/python`
+(Settings → Project → Python Interpreter → Add → Existing), and mark the project root
+as a source root so `from shared.llm import ...` resolves.

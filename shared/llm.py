@@ -1,5 +1,5 @@
 """
-llm.py — one shared place to build the LLM client for every day of the plan.
+llm.py — one shared place to build the LLM client for every module.
 
 Adapted from ../agent-sandbox/4.tool-calling/_llm.py, which already proved the
 idea: we use the OpenAI SDK for EVERY provider, because all of them speak the
@@ -165,7 +165,7 @@ def _client_kwargs(http_client=None) -> dict:
             "RADAR needs RADAR_OPEN_MODEL_BASE_URL; Vertex needs VERTEX_PROJECT."
         )
     kwargs = {"base_url": _CFG["base_url"], "api_key": key}
-    if http_client is not None:      # day00_setup/see_the_wire.py passes one in
+    if http_client is not None:      # so a caller can watch the raw HTTP
         kwargs["http_client"] = http_client
     return kwargs
 
@@ -176,7 +176,7 @@ def build_client(http_client=None) -> OpenAI:
 
 
 def build_async_client(http_client=None) -> AsyncOpenAI:
-    """Async client — the real-world agent shape, wanted from Day 01 onwards."""
+    """Async client — the real-world agent shape, wanted once loops appear."""
     return AsyncOpenAI(**_client_kwargs(http_client))
 
 

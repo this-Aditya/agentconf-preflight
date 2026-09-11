@@ -1,5 +1,5 @@
 """
-hello.py — Day 00, step 3. One chat completion, from a file, not a notebook.
+hello.py — One chat completion, from a file, not a notebook.
 
 This is the smallest thing that proves the whole chain works: .env loaded, key
 accepted, base_url reachable, model name valid, text came back.
