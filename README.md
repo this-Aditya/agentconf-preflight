@@ -1,7 +1,6 @@
 # agentconf-preflight
 
-Pre-conference groundwork for **LFX AGNTCon + MCPCon Europe 2026** (17–18 September,
-Amsterdam): agent loops and harness engineering, stateless MCP servers and extensions,
+Pre-conference groundwork for LFX AGNTCon + MCPCon Europe 2026: agent loops and harness engineering, stateless MCP servers and extensions,
 agent identity via OAuth 2.1 and token exchange, A2A multi-agent orchestration, and
 OpenTelemetry-backed evals.
 
@@ -42,7 +41,7 @@ no idea which model is on the other end.
 
 | Provider | State |
 |---|---|
-| `arc` — KCL ARC-AI | **primary.** Tool calling confirmed on lite/nano/apex. Needs the VPN |
+| `arc` — KCL ARC-AI | **primary.** Tool calling confirmed on lite/nano/apex.  |
 | `github` — GitHub Models | fallback; currently `410`, mid-retirement |
 | `gemini` — AI Studio key | fallback; needs a funded AI Studio prepay balance |
 | `vertex` — Gemini on Vertex AI | fallback; OAuth token, spends Google Cloud credits |
