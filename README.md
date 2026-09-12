@@ -11,17 +11,17 @@ hasn't introduced.
 
 | Folder | Subject |
 |--------|---------|
-| `setup/` | Provider client, model catalogue, rate limits ✅ |
-| `agent_loop/` | The agent loop, written by hand |
-| `mcp_foundations/` | MCP: hosts, clients, servers |
-| `mcp_server/` | The spec, then your own server |
-| `stateless_mcp/` | Unlearning the `initialize` handshake |
-| `mcp_extensions/` | Tasks, multi-round-trip requests, Apps |
-| `harness_and_skills/` | Harnesses, Skills, context engineering |
-| `agent_identity/` | OAuth 2.1, PKCE, token exchange, audience |
-| `multi_agent/` | A2A and orchestration patterns |
-| `observability_evals/` | OpenTelemetry GenAI traces, golden sets |
-| `security_platform/` | Prompt injection, gateways, control planes |
+| `a_setup/` | Provider client, model catalogue, rate limits ✅ |
+| `b_agent_loop/` | The agent loop, written by hand |
+| `c_mcp_foundations/` | MCP: hosts, clients, servers |
+| `d_mcp_server/` | The spec, then your own server |
+| `e_stateless_mcp/` | Unlearning the `initialize` handshake |
+| `f_mcp_extensions/` | Tasks, multi-round-trip requests, Apps |
+| `g_harness_and_skills/` | Harnesses, Skills, context engineering |
+| `h_agent_identity/` | OAuth 2.1, PKCE, token exchange, audience |
+| `i_multi_agent/` | A2A and orchestration patterns |
+| `j_observability_evals/` | OpenTelemetry GenAI traces, golden sets |
+| `k_security_platform/` | Prompt injection, gateways, control planes |
 
 Folders are created as each module is reached, not up front.
 
@@ -29,7 +29,8 @@ Folders are created as each module is reached, not up front.
 
 ```
 shared/llm.py     the only file that names a provider
-setup/            one folder per module
+a_setup/          one folder per module,
+                  prefixed so they sort in order
 pyproject.toml    one uv project — one interpreter for PyCharm
 ```
 
@@ -52,8 +53,8 @@ no idea which model is on the other end.
 ```bash
 cp .env.example .env                              # then add your keys
 uv sync
-uv run python setup/check_env.py            # what will actually run
-uv run python setup/hello.py                # one completion
+uv run python a_setup/check_env.py            # what will actually run
+uv run python a_setup/hello.py                # one completion
 ```
 
 PyCharm: open this folder, set the interpreter to `.venv/bin/python`

@@ -22,7 +22,7 @@ only the client side names anyone.
 ```bash
 cp ../.env.example ../.env     # then fill in whichever keys you have
 uv sync
-uv run python setup/check_env.py
+uv run python a_setup/check_env.py
 ```
 
 Keys live in the gitignored `.env` and load with python-dotenv. `check_env.py` makes
@@ -39,8 +39,8 @@ Needs Python 3.10+; uv will install one if yours is older.
 ## 3. One completion, from a file
 
 ```bash
-uv run python setup/hello.py
-uv run python setup/catalogue.py     # what this provider offers today
+uv run python a_setup/hello.py
+uv run python a_setup/catalogue.py     # what this provider offers today
 ```
 
 Run the catalogue rather than trusting a model name from a tutorial. Names retire:
@@ -50,7 +50,7 @@ users`, and that is the exact model most current writing recommends.
 ## 4. Trigger the rate limit on purpose
 
 ```bash
-uv run python setup/rate_limit_probe.py
+uv run python a_setup/rate_limit_probe.py
 ```
 
 A dozen quick calls with **no retry**, so the 429 actually lands. An agent loop spends

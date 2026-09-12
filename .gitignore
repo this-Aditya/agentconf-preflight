@@ -5,6 +5,7 @@
 
 # ---- private working notes: not for GitHub ----
 context/
+docs/
 
 # ---- python ----
 __pycache__/
