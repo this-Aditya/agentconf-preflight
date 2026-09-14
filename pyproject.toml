@@ -1,7 +1,6 @@
 [project]
 name = "agentconf"
 version = "0.1.0"
-description = "Ten-day study plan for AGNTCon + MCPCon Europe 2026"
 requires-python = ">=3.12"
 dependencies = [
     "openai>=1.60",
